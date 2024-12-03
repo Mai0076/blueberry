@@ -139,3 +139,5 @@ rl.question("パスワードを入力してください:", (pass) => {
 //NaNはどのような比較演算子でも値がfalseになるため、挙動がおかしければNaNになっていないか考えるのが手
 console.log(Number.isNaN(NaN));
 //Number.isNaN関数がtrueならNaNであるとわかる、この関数がNaN判断可能な式
+
+//2.4.5
