@@ -49,6 +49,7 @@ console.log(no, yes);
 //2.3.8
 const val1 = null;
 const val2 = undefined;
+import { rawListeners } from "process";
 //null undefinedはそれぞれ「データがない」ことを示すプリミティブである
 
 //2.3.9
@@ -70,10 +71,13 @@ rl.question("文字列を入力してください:", (line) => {
 }
 
 //2.3.10
-rl.question("数値を入力してください:", (line) => {
+{
+  /*rl.question("数値を入力してください:", (line) => {
   const num = Number(line);
   console.log(num + 100);
-});
+});*/
+}
+
 //Number関数により引数で与えられた値を数値に変換する
 //もし数値が得られなかったらNaNと表示される
 const num1 = Number(true); //1
@@ -94,3 +98,44 @@ console.log(Boolean("foobar")); //true
 console.log(Boolean(null)); //false
 console.log(Boolean(undefined)); //false
 //Booleanで真偽値に変更される
+
+//2.4.2
+const str_3: string = "123";
+console.log(+str_3 * 100); //12300と数値として表示される
+//string型でも+を付ければnumber型に変換できる
+let foo = 10;
+foo++;
+console.log(foo); //11
+--foo;
+console.log(foo); //10
+console.log(++foo); //11
+console.log(foo--); //11
+//インクリメント・デクリメント演算子は副作用(返り値を返す以外に発生する影響)
+//++,--が先の時「変動後の変数の中身」・後の時「変動前の変数の中身」
+{
+  /*rl.question("名前を入力してください:", (name) => {
+  console.log("こんにちは" + name + "さん");
+  console.log(`はじめまして、${name}さん`);
+  rl.close();
+});
+*/
+}
+//+でも文字列の結合ができる、ただしテンプレートリテラルを用いる方が一般的
+
+//2.4.4
+const left1 = 1,
+  right1 = 3;
+console.log(left1 < right1); //trueと表示される
+rl.question("パスワードを入力してください:", (pass) => {
+  if (pass === "aimai") {
+    console.log("ようこそ");
+  } else {
+    console.log("誰？");
+  }
+  rl.close();
+});
+//==と===では働きが異なる,===の方が型に厳密であり推奨されている
+//nullとundefinedについては使ってもよい
+//NaNはどのような比較演算子でも値がfalseになるため、挙動がおかしければNaNになっていないか考えるのが手
+console.log(Number.isNaN(NaN));
+//Number.isNaN関数がtrueならNaNであるとわかる、この関数がNaN判断可能な式
