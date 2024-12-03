@@ -42,6 +42,7 @@ console.log(no, yes);
 //2.3.8
 const val1 = null;
 const val2 = undefined;
+import { stdin, stdout } from "process";
 //null undefinedはそれぞれ「データがない」ことを示すプリミティブである
 //2.3.9
 import { createInterface } from "readline";
@@ -112,17 +113,61 @@ console.log(foo--); //11
 //2.4.4
 const left1 = 1, right1 = 3;
 console.log(left1 < right1); //trueと表示される
-rl.question("パスワードを入力してください", (pass) => {
+{
+    /*rl.question("パスワードを入力してください:", (pass) => {
     if (pass === "aimai") {
-        console.log("ようこそ");
-    }
-    else {
-        console.log("誰？");
+      console.log("ようこそ");
+    } else {
+      console.log("誰？");
     }
     rl.close();
-});
+  });*/
+}
 //==と===では働きが異なる,===の方が型に厳密であり推奨されている
 //nullとundefinedについては使ってもよい
 //NaNはどのような比較演算子でも値がfalseになるため、挙動がおかしければNaNになっていないか考えるのが手
 console.log(Number.isNaN(NaN));
 //Number.isNaN関数がtrueならNaNであるとわかる、この関数がNaN判断可能な式
+//2.4.5
+const t = true, f = false;
+console.log(t && t); //true
+console.log(t && f); //false
+console.log(f && f); //false
+console.log(t || t); //true
+console.log(t || f); //true
+console.log(f || f); //false
+//a&&b=aかつb/a||b=aまたはb
+const rl1 = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+rl1.question("数値を入力してください", (line) => {
+    const num = Number(line);
+    if (num >= 0 && num < 100) {
+        console.log("0-100です");
+    }
+    else {
+        console.log("違います");
+    }
+    rl1.close();
+});
+const ex_num = 2;
+if (!Number.isNaN(ex_num)) {
+    console.log("NaNではありません");
+}
+//2.4.6
+const input1 = "123", input2 = "";
+const input1isNotEmpty = !!input1; //true
+const input2isNotEmpty = !!input2; //false
+//!!は!(!式)
+const rl2 = createInterface({
+    input: stdin,
+    output: stdout,
+});
+rl2.question("名前は？", (your_name) => {
+    const displayName = your_name || "名無し";
+    console.log(`こんにちは、$(displayName)さん`);
+});
+//A||Bは短絡評価(左側の値を返す場合、右側は評価すらされない)という特徴を持ち、trueのときはA,falseのときはBを実行する
+const secret = process.env.SECRET ?? "default";
+console.log(`secretは${secret}です`);
