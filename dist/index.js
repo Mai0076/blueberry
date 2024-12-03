@@ -1,4 +1,3 @@
-"use strict";
 //first
 const message = "hello";
 console.log(message);
@@ -33,9 +32,37 @@ console.log(`123+456=${123 + 456}`);
 //これにより型が違うものも結合することができる
 //2.3.6
 console.log("hello \\world/");
-console.log("hello \u{796b} world");
+console.log("hello \u{796d} world");
 //\nで改行/\tでタブ文字/\u{数字}でユニコード入力
 //2.3.7
 const no = false;
 const yes = true;
 console.log(no, yes);
+//真偽値リテラルはtrue,false
+//2.3.8
+const val1 = null;
+const val2 = undefined;
+//null undefinedはそれぞれ「データがない」ことを示すプリミティブである
+//2.3.9
+import { createInterface } from "readline";
+const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+{
+    /*rl.question("文字列を入力してください:", (line) => {
+    console.log(`${line}が入力されました`);
+    rl.close();
+  });
+  rl.question("文字列を入力してください:", (line) => {
+    const result = line + 100;
+    console.log(result);
+    rl.close();
+  });*/
+}
+//2.3.10
+rl.question("数値を入力してください:", (line) => {
+    const num = Number(line);
+    console.log(num + 100);
+});
+//Number関数により引数で与えられた値を数値に変換する

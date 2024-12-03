@@ -50,3 +50,47 @@ console.log(no, yes);
 const val1 = null;
 const val2 = undefined;
 //null undefinedはそれぞれ「データがない」ことを示すプリミティブである
+
+//2.3.9
+import { createInterface } from "readline";
+const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+{
+  /*rl.question("文字列を入力してください:", (line) => {
+  console.log(`${line}が入力されました`);
+  rl.close();
+});
+rl.question("文字列を入力してください:", (line) => {
+  const result = line + 100;
+  console.log(result);
+  rl.close();
+});*/
+}
+
+//2.3.10
+rl.question("数値を入力してください:", (line) => {
+  const num = Number(line);
+  console.log(num + 100);
+});
+//Number関数により引数で与えられた値を数値に変換する
+//もし数値が得られなかったらNaNと表示される
+const num1 = Number(true); //1
+const num2 = Number(false); //0
+const num3 = Number(null); //0
+const num4 = Number(undefined); //NaN
+const bignum1 = BigInt(true); //1n
+const bignum2 = BigInt("123"); //123n
+//BigIntは整数しか扱えない、文字列や小数点を与えるとランタイムエラーが表示される
+const str_1 = String(123); //"123"
+const str_2 = String(true); //"true"
+console.log(Boolean(123)); //true
+console.log(Boolean(0)); //false
+console.log(Boolean(1n)); //true
+console.log(Boolean(0n)); //false
+console.log(Boolean("")); //false
+console.log(Boolean("foobar")); //true
+console.log(Boolean(null)); //false
+console.log(Boolean(undefined)); //false
+//Booleanで真偽値に変更される
