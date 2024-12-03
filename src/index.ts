@@ -126,14 +126,17 @@ console.log(foo--); //11
 const left1 = 1,
   right1 = 3;
 console.log(left1 < right1); //trueと表示される
-rl.question("パスワードを入力してください:", (pass) => {
+{
+  /*rl.question("パスワードを入力してください:", (pass) => {
   if (pass === "aimai") {
     console.log("ようこそ");
   } else {
     console.log("誰？");
   }
   rl.close();
-});
+});*/
+}
+
 //==と===では働きが異なる,===の方が型に厳密であり推奨されている
 //nullとundefinedについては使ってもよい
 //NaNはどのような比較演算子でも値がfalseになるため、挙動がおかしければNaNになっていないか考えるのが手
@@ -141,3 +144,36 @@ console.log(Number.isNaN(NaN));
 //Number.isNaN関数がtrueならNaNであるとわかる、この関数がNaN判断可能な式
 
 //2.4.5
+const t = true,
+  f = false;
+console.log(t && t); //true
+console.log(t && f); //false
+console.log(f && f); //false
+console.log(t || t); //true
+console.log(t || f); //true
+console.log(f || f); //false
+//a&&b=aかつb/a||b=aまたはb
+const rl1 = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+rl1.question("数値を入力してください", (line) => {
+  const num = Number(line);
+  if (num >= 0 && num < 100) {
+    console.log("0-100です");
+  } else {
+    console.log("違います");
+  }
+  rl1.close();
+});
+const ex_num: number = 2;
+if (!Number.isNaN(ex_num)) {
+  console.log("NaNではありません");
+}
+
+//2.4.6
+const input1 = "123",
+  input2 = "";
+const input1isNotEmpty = !!input1; //true
+const input2isNotEmpty = !!input2; //false
+//!!は!(!式)
