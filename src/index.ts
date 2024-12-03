@@ -49,7 +49,7 @@ console.log(no, yes);
 //2.3.8
 const val1 = null;
 const val2 = undefined;
-import { rawListeners } from "process";
+import { rawListeners, stdin, stdout } from "process";
 //null undefinedはそれぞれ「データがない」ことを示すプリミティブである
 
 //2.3.9
@@ -177,3 +177,15 @@ const input1 = "123",
 const input1isNotEmpty = !!input1; //true
 const input2isNotEmpty = !!input2; //false
 //!!は!(!式)
+const rl2 = createInterface({
+  input: stdin,
+  output: stdout,
+});
+rl2.question("名前は？", (your_name) => {
+  const displayName = your_name || "名無し";
+  console.log(`こんにちは、$(displayName)さん`);
+});
+//A||Bは短絡評価(左側の値を返す場合、右側は評価すらされない)という特徴を持ち、trueのときはA,falseのときはBを実行する
+const secret = process.env.SECRET ?? "default"; //環境変数secretを取得、なければdefaultが出力
+console.log(`secretは${secret}です`);
+//??はnull,undefinedのように「データがない」ことを表すのに特化したもの，||と異なり空文字列や０もないものとして扱う

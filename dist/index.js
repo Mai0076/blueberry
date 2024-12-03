@@ -42,6 +42,7 @@ console.log(no, yes);
 //2.3.8
 const val1 = null;
 const val2 = undefined;
+import { stdin, stdout } from "process";
 //null undefinedはそれぞれ「データがない」ことを示すプリミティブである
 //2.3.9
 import { createInterface } from "readline";
@@ -154,3 +155,19 @@ const ex_num = 2;
 if (!Number.isNaN(ex_num)) {
     console.log("NaNではありません");
 }
+//2.4.6
+const input1 = "123", input2 = "";
+const input1isNotEmpty = !!input1; //true
+const input2isNotEmpty = !!input2; //false
+//!!は!(!式)
+const rl2 = createInterface({
+    input: stdin,
+    output: stdout,
+});
+rl2.question("名前は？", (your_name) => {
+    const displayName = your_name || "名無し";
+    console.log(`こんにちは、$(displayName)さん`);
+});
+//A||Bは短絡評価(左側の値を返す場合、右側は評価すらされない)という特徴を持ち、trueのときはA,falseのときはBを実行する
+const secret = process.env.SECRET ?? "default";
+console.log(`secretは${secret}です`);
