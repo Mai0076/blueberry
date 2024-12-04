@@ -165,7 +165,7 @@ const rl2 = createInterface({
 });
 rl2.question("名前は？", (your_name) => {
     const displayName = your_name || "名無し";
-    console.log(`こんにちは、$(displayName)さん`);
+    console.log(`こんにちは、${displayName}さん`);
     rl2.close();
 });
 //A||Bは短絡評価(左側の値を返す場合、右側は評価すらされない)という特徴を持ち、trueのときはA,falseのときはBを実行する
@@ -210,3 +210,32 @@ num **= 0.5; //10
 console.log(0b0101 | 0b1100); //13(0b1101)
 console.log(0b0101 & 0b1100); //4(0b0100)
 //ビット演算子とは&,|で、AND,OR演算を示す
+//2.5.1
+//ifはtrueなどと同じキーワード（予約語）＝変数名としてifは使えない
+//2.5.2
+let yourName = "";
+if (yourName == "") {
+    console.log("名前を入力してください");
+    yourName = "名無し";
+}
+//{}を使うことで文をいくつも書けるようになる(ブロックという)
+//2.5.3
+//elseも予約語
+if (yourName == "") {
+    console.log("名前を入力してください");
+    yourName = "名無し";
+}
+else {
+    console.log("ありがとうございます");
+}
+if (num < 0) {
+    console.log("numは負の数です");
+}
+else if (num == 0) {
+    console.log("numは0です");
+}
+else {
+    console.log("numは正の数です");
+}
+//if (条件式) 文1 else if (条件式) 文2 else 文3　は　if (条件式) 文1 else {if (条件式) 文2 else 文3}　と同じ
+//上記のコメントアウト後者の書き方をネストという
