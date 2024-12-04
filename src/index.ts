@@ -178,14 +178,137 @@ const input1isNotEmpty = !!input1; //true
 const input2isNotEmpty = !!input2; //false
 //!!は!(!式)
 const rl2 = createInterface({
-  input: stdin,
-  output: stdout,
+  input: process.stdin,
+  output: process.stdout,
 });
 rl2.question("名前は？", (your_name) => {
   const displayName = your_name || "名無し";
-  console.log(`こんにちは、$(displayName)さん`);
+  console.log(`こんにちは、${displayName}さん`);
+  rl2.close();
 });
 //A||Bは短絡評価(左側の値を返す場合、右側は評価すらされない)という特徴を持ち、trueのときはA,falseのときはBを実行する
 const secret = process.env.SECRET ?? "default"; //環境変数secretを取得、なければdefaultが出力
 console.log(`secretは${secret}です`);
 //??はnull,undefinedのように「データがない」ことを表すのに特化したもの，||と異なり空文字列や０もないものとして扱う
+
+//2.4.7
+const rl3 = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+rl3.question("数値を入力してください：", (line) => {
+  const num = Number(line);
+  const message =
+    0 <= num && num < 100
+      ? `${line}は条件を満たす`
+      : `${line}は条件を満たさない`;
+  console.log(message);
+  rl3.close();
+});
+//三項演算子　＝　条件式 ? 真の時の式 : 偽の時の式 ;
+//boolean型以外でも可能　num ? A : B ; だとnumが０かNaN以外だとAが出力される
+
+//2.4.8
+const rl4 = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+rl4.question("名前を入力してください：", (name) => {
+  if ((name = "")) {
+    name = "名無し";
+  }
+  console.log(`こんにちは、${name}さん`);
+  rl4.close();
+});
+//代入演算子　型は揃えないとコンパイルエラーになる
+let num = 0;
+num += 100; //100
+num *= 4; //400
+num -= 200; //200
+num /= 2; //100
+num **= 0.5; //10
+
+//2.4.9
+console.log(0b0101 | 0b1100); //13(0b1101)
+console.log(0b0101 & 0b1100); //4(0b0100)
+//ビット演算子とは&,|で、AND,OR演算を示す
+
+//2.5.1
+//ifはtrueなどと同じキーワード（予約語）＝変数名としてifは使えない
+
+//2.5.2
+let yourName = "";
+if (yourName == "") {
+  console.log("名前を入力してください");
+  yourName = "名無し";
+}
+//{}を使うことで文をいくつも書けるようになる(ブロックという)
+
+//2.5.3
+//elseも予約語
+if (yourName == "") {
+  console.log("名前を入力してください");
+  yourName = "名無し";
+} else {
+  console.log("ありがとうございます");
+}
+if (num < 0) {
+  console.log("numは負の数です");
+} else if (num == 0) {
+  console.log("numは0です");
+} else {
+  console.log("numは正の数です");
+}
+//if (条件式) 文1 else if (条件式) 文2 else 文3　は　if (条件式) 文1 else {if (条件式) 文2 else 文3}　と同じ
+//上記のコメントアウト後者の書き方をネストという
+
+//2.5.4
+const rl5 = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+rl5.question("コマンドを入力してください", (name) => {
+  switch (name) {
+    case "greet":
+      console.log("こんにちは");
+      break;
+    case "cat":
+      console.log("あなたは猫派ですか?");
+      console.log("私は犬派です");
+      break;
+    default:
+      console.log(`コマンド「${name}」を認識できませんでした`);
+  }
+  rl5.close();
+});
+//switch (式) {...}
+//{}内において、case節は、case 式: という構文を書く,何個でも可能 / default節は一つだけ書ける
+//break;を置くとそこでswitch文が終了する,break文がなくてもswitch文の}に到達したら強制的終了する
+//default節は必須ではない
+
+//2.5.5
+let sum = 0;
+let i = 1;
+while (i <= 100) {
+  sum += i;
+  i++;
+}
+console.log(sum); //5050
+//while文によるループ
+while (true) {
+  if (i > 10) {
+    break;
+  }
+  sum += i;
+  i++;
+}
+//break文の使い方
+while (i < 20) {
+  i++;
+  if (i % 2 === 1) {
+    //iが奇数の時を探す式
+    continue;
+  }
+  console.log(i); //2,4,6,,,,
+}
+//continue文は「ループの先頭に戻る」、戻って真なら再びループ、偽ならwhile文が終了
