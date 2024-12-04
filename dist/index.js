@@ -239,3 +239,52 @@ else {
 }
 //if (条件式) 文1 else if (条件式) 文2 else 文3　は　if (条件式) 文1 else {if (条件式) 文2 else 文3}　と同じ
 //上記のコメントアウト後者の書き方をネストという
+//2.5.4
+const rl5 = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+rl5.question("コマンドを入力してください", (name) => {
+    switch (name) {
+        case "greet":
+            console.log("こんにちは");
+            break;
+        case "cat":
+            console.log("あなたは猫派ですか?");
+            console.log("私は犬派です");
+            break;
+        default:
+            console.log(`コマンド「${name}」を認識できませんでした`);
+    }
+    rl5.close();
+});
+//switch (式) {...}
+//{}内において、case節は、case 式: という構文を書く,何個でも可能 / default節は一つだけ書ける
+//break;を置くとそこでswitch文が終了する,break文がなくてもswitch文の}に到達したら強制的終了する
+//default節は必須ではない
+//2.5.5
+let sum = 0;
+let i = 1;
+while (i <= 100) {
+    sum += i;
+    i++;
+}
+console.log(sum); //5050
+//while文によるループ
+while (true) {
+    if (i > 10) {
+        break;
+    }
+    sum += i;
+    i++;
+}
+//break文の使い方
+while (i < 20) {
+    i++;
+    if (i % 2 === 1) {
+        //iが奇数の時を探す式
+        continue;
+    }
+    console.log(i); //2,4,6,,,,
+}
+//continue文は「ループの先頭に戻る」、戻って真なら再びループ、偽ならwhile文が終了
