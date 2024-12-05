@@ -302,3 +302,41 @@ for (let i = 0; i <= 100; i++) {
     console.log(i); //2,4,6,,,
 }
 //while文の時と違って、ループの先頭に戻ってもi++が実行されるため無限ループに陥りにくい
+//2.6.1
+//FizzBuzz
+for (let i = 1; i <= 100; i++) {
+    let num_3 = i % 3;
+    let num_5 = i % 5;
+    if (num_3 === 0 && num_5 === 0) {
+        console.log("FizzBuzz");
+    }
+    else if (num_3 === 0 && num_5 !== 0) {
+        console.log("Fizz");
+    }
+    else if (num_3 !== 0 && num_5 === 0) {
+        console.log("Buzz");
+    }
+    else {
+        console.log(i);
+    }
+}
+let answer = "";
+for (let i = 1; i <= 100; i++) {
+    if (i > 1) {
+        answer += " ";
+    }
+    if (i % 3 === 0 && i % 5 === 0) {
+        answer += "FizzBuzz";
+    }
+    else if (i % 3 === 0) {
+        answer += "Fizz";
+    }
+    else if (i % 5 === 0) {
+        answer += "Buzz";
+    }
+    else {
+        answer += String(i);
+    }
+    continue;
+}
+console.log(answer);
