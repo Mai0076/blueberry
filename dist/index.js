@@ -288,3 +288,17 @@ while (i < 20) {
     console.log(i); //2,4,6,,,,
 }
 //continue文は「ループの先頭に戻る」、戻って真なら再びループ、偽ならwhile文が終了
+//2.5.6
+let sum_1 = 0;
+for (let i = 1; i <= 100; i++) {
+    sum_1 += i;
+}
+console.log(sum_1); //5050
+//for (let 変数名=初期化式; 条件式; 更新式) 文
+for (let i = 0; i <= 100; i++) {
+    if (i % 2 === 1) {
+        continue;
+    }
+    console.log(i); //2,4,6,,,
+}
+//while文の時と違って、ループの先頭に戻ってもi++が実行されるため無限ループに陥りにくい
