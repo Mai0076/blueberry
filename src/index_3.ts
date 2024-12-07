@@ -22,3 +22,22 @@ const user = {
   names, //プロパティ名と変数名が同じときは省略/プロパティ名: 変数名 → プロパティ名,　と書き換える
   age: 20,
 };
+
+//3.1.3
+const obj2 = {
+  foo: 123,
+  "foo bar": 456,
+  1: "Hello",
+};
+console.log(obj2.foo); //123
+console.log(obj2["foo bar"]); //456
+console.log(obj2["1"]); //"Hello"
+//"",''を用いることでプロパティ名に文字列リテラルを使うことができる
+//数値リテラルもオブジェクトリテラル内で使用可能に
+//ただしプロパティアクセスの際は　式[プロパティ名]　の構文を使用する必要がある
+const propName = "foo";
+const obj3 = {
+  [propName]: 123,
+};
+console.log(obj3[propName]);
+console.log(obj3.foo); //どちらの場合でも123が表示される
