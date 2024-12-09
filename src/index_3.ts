@@ -41,3 +41,5 @@ const obj3 = {
 };
 console.log(obj3[propName]);
 console.log(obj3.foo); //どちらの場合でも123が表示される
+
+//3.1.4
