@@ -148,3 +148,15 @@ type FooObj = { foo: number };
 type MyObj = FooObj;
 const Obj6: MyObj = { foo: 0 };
 //type文は任意の方に別名を付けることができるので、作った型にさらに別名を付けることも可能
+
+//3.2.4
+interface FooBarObj1 {
+  foo: number;
+  bar: string;
+}
+const obj6: FooBarObj1 = {
+  foo: 123,
+  bar: "hello",
+};
+//interface宣言=型名を新規宣言する別の方法、扱えるのはオブジェクト型のみ。
+//interface 型名 オブジェクト型 の構文

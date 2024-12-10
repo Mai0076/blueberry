@@ -121,4 +121,9 @@ const obj5 = {
 //type文はtypescript特有のものであり,jsではtype文が消えていることがわかる
 const id = "name";
 const Obj6 = { foo: 0 };
-//type文は任意の方に別名を付けることができるので、作った型にさらに別名を付けることも可能
+const obj6 = {
+    foo: 123,
+    bar: "hello",
+};
+//interface宣言=型名を新規宣言する別の方法、扱えるのはオブジェクト型のみ。
+//interface 型名 オブジェクト型 の構文
