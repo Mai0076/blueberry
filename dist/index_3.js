@@ -60,3 +60,90 @@ rl.question("数値を入力してください:", (line) => {
     console.log(message[num >= 0 ? "good" : "bad"]);
     rl.close();
 });
+//式1[式2]の構文でも呼び出せる　式1=オブジェクトを表す式　式2=プロパティ名を表す式
+//[]ではstring型を用いるのが原則だが上記のコードのようにnumber型でも可能ではある
+//3.1.5
+//  スプレッド構文:...式の形でプロパティ:式の代わりに使用することが可能
+const obj_x1 = {
+    foo: 123,
+    bar: 456,
+};
+const obj_x2 = {
+    ...obj_x1,
+    foo: 789,
+};
+console.log(obj_x2); //obj_x2は{foo:789,bar:456}
+{
+    /*const obj_x3={
+    foo:-789,
+    ...obj_x1,
+  }*/
+}
+//...より前にobj_x1と重複するプロパティがある場合にはエラーが生じる
+//obj_x1とobj_x2を順に代入すると後に書かれたobj_x2の内容で上書きされる
+//3.1.6
+const foo = { num: 123 };
+const bar = foo;
+console.log(bar.num); //123
+bar.num = 456;
+console.log(foo.num); //456
+//同じプロパティなのでfoo.num/bar.numはリンクして変動する
+const foo1 = { num: 123 };
+const bar1 = { ...foo1 };
+console.log(bar1.num); //123
+bar1.num = 0;
+console.log(foo1.num); //123
+//スプレッド構文(...)ではプロパティの明示的なコピーなのでfoo1.num/bar1.numはリンクしない
+//上記の罠にはまりやすいので愚直にconst foo={num:123}; const bar={num:123}; と書く方がよいこともある
+const foo2 = { obj: { num: 123 } };
+const bar2 = { ...foo2 };
+bar2.obj.num = 0;
+console.log(foo2.obj.num); //0
+//objがコピーされているがobjのプロパティであるnumはリンクしている
+//ネストしたオブジェクトも含めてコピーする方法は今のところない
+const foo3 = { num: 123 };
+const bar3 = foo3;
+const baz = { num: 123 };
+console.log(foo3 === bar3); //true
+console.log(foo3 === baz); //false
+//foo3とbazは中身が同じでも別々に作られたオブジェクトなので等しいとは言えない
+//3.2.1
+const obj4 = {
+    foo: 123,
+    bar: "hello",
+    "foo bar": "123",
+};
+const obj5 = {
+    foo: 123,
+    bar: "hello",
+};
+//type文=型名を宣言をする文のこと  type 型名=型;
+//type文はtypescript特有のものであり,jsではtype文が消えていることがわかる
+const id = "name";
+const Obj6 = { foo: 0 };
+const obj6 = {
+    foo: 123,
+    bar: "hello",
+};
+const data = {
+    apple: 220,
+    coffee: 120,
+};
+data.bento = 500; //data宣言後でも新たなプロパティを作って代入することができる
+console.log(data.bento); //500
+const obj7 = {
+    foo: false,
+    bar: true,
+};
+const obj8 = {
+    foo: true,
+    bar: false,
+    baz: 1234,
+};
+console.log(obj7.baz); //undefined
+console.log(obj8.baz); //1234
+//このときbazは number | undefined と表記され、存在すればnumber,なければundefinedが返ってくる
+//ただしconsole.log(obj8.baz*100); はコンパイルエラーとなる
+if (obj8.baz !== undefined) {
+    console.log(obj8.baz * 100);
+}
