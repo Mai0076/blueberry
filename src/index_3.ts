@@ -160,3 +160,18 @@ const obj6: FooBarObj1 = {
 };
 //interface宣言=型名を新規宣言する別の方法、扱えるのはオブジェクト型のみ。
 //interface 型名 オブジェクト型 の構文
+
+//3.2.5
+//インデックスシグネチャ = 「どんな名前のプロパティでも受け入れる」/プロパティ名が動的に決まるときに使う
+type PriceData = {
+  [key: string]: number;
+};
+const data: PriceData = {
+  apple: 220,
+  coffee: 120,
+};
+data.bento = 500; //data宣言後でも新たなプロパティを作って代入することができる
+console.log(data.bento); //500
+//data.chicken="foo";は文字列を代入しようとしているのでコンパイルエラー
+//オブジェクト型の中に[キー名:string]:型;と書くのが基本的な形
+//このstringは「任意のstring型のキーに対して」の意図 ＝「任意のプロパティに対して」

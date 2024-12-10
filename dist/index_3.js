@@ -125,5 +125,11 @@ const obj6 = {
     foo: 123,
     bar: "hello",
 };
-//interface宣言=型名を新規宣言する別の方法、扱えるのはオブジェクト型のみ。
-//interface 型名 オブジェクト型 の構文
+const data = {
+    apple: 220,
+    coffee: 120,
+};
+data.bento = 500; //data宣言後でも新たなプロパティを作って代入することができる
+//data.chicken="foo";はコンパイルエラー
+//オブジェクト型の中に[キー名:string]:型;と書くのが基本的な形
+console.log(data.bento);
