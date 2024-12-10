@@ -114,3 +114,37 @@ const bar3 = foo3;
 const baz = { num: 123 };
 console.log(foo3 === bar3); //true
 console.log(foo3 === baz); //false
+//foo3とbazは中身が同じでも別々に作られたオブジェクトなので等しいとは言えない
+
+//3.2.1
+const obj4: { foo: number; bar: string; "foo bar": string } = {
+  foo: 123,
+  bar: "hello",
+  "foo bar": "123",
+};
+//オブジェクト型の明記方法　プロパティ名：型; を{}内に並べる
+
+//3.2.2
+//宣言されているプロパティを持たないオブジェクトを代入しようとするとエラーが生じる
+//型違いなどでもコンパイルエラーが生じるので注意
+
+//3.2.3
+type FooBarObj = {
+  foo: number;
+  bar: string;
+};
+const obj5: FooBarObj = {
+  foo: 123,
+  bar: "hello",
+};
+//type文=型名を宣言をする文のこと  type 型名=型;
+//type文はtypescript特有のものであり,jsではtype文が消えていることがわかる
+
+const id: UserId = "name";
+type UserId = string;
+//上記のようにtype文はプリミティブの型に別名を与えることも可能
+
+type FooObj = { foo: number };
+type MyObj = FooObj;
+const Obj6: MyObj = { foo: 0 };
+//type文は任意の方に別名を付けることができるので、作った型にさらに別名を付けることも可能

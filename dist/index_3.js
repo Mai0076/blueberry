@@ -106,3 +106,19 @@ const bar3 = foo3;
 const baz = { num: 123 };
 console.log(foo3 === bar3); //true
 console.log(foo3 === baz); //false
+//foo3とbazは中身が同じでも別々に作られたオブジェクトなので等しいとは言えない
+//3.2.1
+const obj4 = {
+    foo: 123,
+    bar: "hello",
+    "foo bar": "123",
+};
+const obj5 = {
+    foo: 123,
+    bar: "hello",
+};
+//type文=型名を宣言をする文のこと  type 型名=型;
+//type文はtypescript特有のものであり,jsではtype文が消えていることがわかる
+const id = "name";
+const Obj6 = { foo: 0 };
+//type文は任意の方に別名を付けることができるので、作った型にさらに別名を付けることも可能
