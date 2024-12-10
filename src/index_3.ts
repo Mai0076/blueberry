@@ -43,3 +43,25 @@ console.log(obj3[propName]);
 console.log(obj3.foo); //どちらの場合でも123が表示される
 
 //3.1.4
+const user1 = {
+  name: "title",
+  age: 25,
+};
+user1.age = 26;
+console.log(user.age); //26
+import { createInterface } from "readline";
+const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+const message = {
+  good: "0以上の数値",
+  bad: "負の数値は入力しないでください",
+};
+rl.question("数値を入力してください:", (line) => {
+  const num = Number(line);
+  console.log(message[num >= 0 ? "good" : "bad"]);
+  rl.close();
+});
+//式1[式2]の構文でも呼び出せる　式1=オブジェクトを表す式　式2=プロパティ名を表す式
+//[]ではstring型を用いるのが原則だが上記のコードのようにnumber型でも可能ではある

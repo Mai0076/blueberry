@@ -1,4 +1,3 @@
-"use strict";
 //3.1.1
 const obj = {
     foo: 123,
@@ -39,4 +38,25 @@ const obj3 = {
     [propName]: 123,
 };
 console.log(obj3[propName]);
-console.log(obj3.foo);
+console.log(obj3.foo); //どちらの場合でも123が表示される
+//3.1.4
+const user1 = {
+    name: "title",
+    age: 25,
+};
+user1.age = 26;
+console.log(user.age); //26
+import { createInterface } from "readline";
+const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+const message = {
+    good: "0以上の数値",
+    bad: "負の数値は入力しないでください",
+};
+rl.question("数値を入力してください:", (line) => {
+    const num = Number(line);
+    console.log(message[num >= 0 ? "good" : "bad"]);
+    rl.close();
+});
