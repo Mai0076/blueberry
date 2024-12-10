@@ -175,3 +175,28 @@ console.log(data.bento); //500
 //data.chicken="foo";は文字列を代入しようとしているのでコンパイルエラー
 //オブジェクト型の中に[キー名:string]:型;と書くのが基本的な形
 //このstringは「任意のstring型のキーに対して」の意図 ＝「任意のプロパティに対して」
+
+//3.2.6
+type MyObj1 = {
+  foo: boolean;
+  bar: boolean;
+  baz?: number;
+};
+const obj7: MyObj1 = {
+  foo: false,
+  bar: true,
+};
+const obj8: MyObj1 = {
+  foo: true,
+  bar: false,
+  baz: 1234,
+};
+console.log(obj7.baz); //undefined
+console.log(obj8.baz); //1234
+//このときbazは number | undefined と表記され、存在すればnumber,なければundefinedが返ってくる
+//ただしconsole.log(obj8.baz*100); はコンパイルエラーとなる
+if (obj8.baz !== undefined) {
+  console.log(obj8.baz * 100); //123400
+}
+
+//3.2.7

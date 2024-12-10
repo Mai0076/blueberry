@@ -130,6 +130,20 @@ const data = {
     coffee: 120,
 };
 data.bento = 500; //data宣言後でも新たなプロパティを作って代入することができる
-//data.chicken="foo";はコンパイルエラー
-//オブジェクト型の中に[キー名:string]:型;と書くのが基本的な形
-console.log(data.bento);
+console.log(data.bento); //500
+const obj7 = {
+    foo: false,
+    bar: true,
+};
+const obj8 = {
+    foo: true,
+    bar: false,
+    baz: 1234,
+};
+console.log(obj7.baz); //undefined
+console.log(obj8.baz); //1234
+//このときbazは number | undefined と表記され、存在すればnumber,なければundefinedが返ってくる
+//ただしconsole.log(obj8.baz*100); はコンパイルエラーとなる
+if (obj8.baz !== undefined) {
+    console.log(obj8.baz * 100);
+}
