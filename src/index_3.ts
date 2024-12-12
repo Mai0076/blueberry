@@ -200,3 +200,25 @@ if (obj8.baz !== undefined) {
 }
 
 //3.2.7
+type MyObj2 = {
+  readonly foo: number;
+};
+const obj9: MyObj2 = { foo: 123 };
+//obj9.foo=0; にするとコンパイルエラーが生じる
+//readonlyとすると読み取り専用のプロパティにできる
+
+//3.2.8
+const num1: number = 0;
+type T = typeof num1;
+const foo4: T = 123;
+
+const obj10 = {
+  foo: 123,
+  bar: "hi",
+};
+type T1 = typeof obj10;
+const obj11: T1 = {
+  foo: -50,
+  bar: "",
+};
+//const obj11: typeof obj10 = でも可能

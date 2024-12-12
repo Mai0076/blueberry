@@ -142,8 +142,23 @@ const obj8 = {
 };
 console.log(obj7.baz); //undefined
 console.log(obj8.baz); //1234
-//このときbazは number | undefined と表記され、存在すればnumber,なければundefinedが返ってくる
+//このときbazは number | undefined と表記され、存在すればnumber,なければundefinedが返ってくる(ユニオン型)
 //ただしconsole.log(obj8.baz*100); はコンパイルエラーとなる
 if (obj8.baz !== undefined) {
-    console.log(obj8.baz * 100);
+    console.log(obj8.baz * 100); //123400
 }
+const obj9 = { foo: 123 };
+//obj9.foo=0; にするとコンパイルエラーが生じる
+//readonlyとすると読み取り専用のプロパティにできる
+//3.2.8
+const num1 = 0;
+const foo4 = 123;
+const obj10 = {
+    foo: 123,
+    bar: "hi",
+};
+const obj11 = {
+    foo: -50,
+    bar: "",
+};
+//const obj11: typeof obj10 = でも可能
