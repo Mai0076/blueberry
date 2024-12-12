@@ -161,4 +161,22 @@ const obj11 = {
     foo: -50,
     bar: "",
 };
-//const obj11: typeof obj10 = でも可能
+const obj12 = {
+    foo: "hi",
+    bar: 123,
+    baz: false,
+};
+const obj13 = obj12;
+const u1 = {
+    name: "hanako",
+    age: 26,
+    //telNumber:"09012345678"
+};
+//u1:Userに余計なプロパティをもっているとコンパイルエラーが生じる
+const obj14 = {
+    name: "hanako",
+    age: 26,
+    telNumber: "09012345678",
+};
+const u2 = obj14;
+//obj14はUserの部分型であるということになるのでエラーは生じない
