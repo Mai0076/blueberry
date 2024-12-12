@@ -200,3 +200,88 @@ if (obj8.baz !== undefined) {
 }
 
 //3.2.7
+type MyObj2 = {
+  readonly foo: number;
+};
+const obj9: MyObj2 = { foo: 123 };
+//obj9.foo=0; にするとコンパイルエラーが生じる
+//readonlyとすると読み取り専用のプロパティにできる
+
+//3.2.8
+const num1: number = 0;
+type T = typeof num1;
+const foo4: T = 123;
+
+const obj10 = {
+  foo: 123,
+  bar: "hi",
+};
+type T1 = typeof obj10;
+const obj11: T1 = {
+  foo: -50,
+  bar: "",
+};
+//const obj11: typeof obj10 = でも可能
+
+//3.3.1
+type FooBar = {
+  foo: string;
+  bar: number;
+};
+type FooBarBaz = {
+  foo: string;
+  bar: number;
+  baz: boolean;
+};
+const obj12: FooBarBaz = {
+  foo: "hi",
+  bar: 123,
+  baz: false,
+};
+const obj13: FooBar = obj12;
+//FooBarBaz型はFooBar型の内容を包含しているため、FooBarBaz型は、FooBar型の部分型であるという
+//構造的部分型＝上記のように実際に比較して部分型かどうか自動的に決める方式(ts特有)
+//名前的部分型＝「この型はこの型の部分型である」と明示的に宣言されたものだけが部分型とみなされる
+
+//3.3.2
+//①TがもつプロパティはすべてSに存在する②条件１の各プロパティについて、Sにおけるそのプロパティの型はTにおけるプロパティの型の部分型(または同じ型)である
+
+type Animal = {
+  age: number;
+};
+type Human = {
+  age: number;
+  name: string;
+};
+type AnimalFamily = {
+  familyName: string;
+  mother: Animal;
+  father: Animal;
+  child: Animal;
+};
+type HumanFamily = {
+  familyName: string;
+  mother: Human;
+  father: Human;
+  child: Human;
+};
+//HumanはAnimalの部分型である
+
+//3.3.3
+type User = {
+  name: string;
+  age: number;
+};
+const u1: User = {
+  name: "hanako",
+  age: 26,
+  //telNumber:"09012345678"
+};
+//u1:Userに余計なプロパティをもっているとコンパイルエラーが生じる
+const obj14 = {
+  name: "hanako",
+  age: 26,
+  telNumber: "09012345678",
+};
+const u2: User = obj14;
+//obj14はUserの部分型であるということになるのでエラーは生じない
