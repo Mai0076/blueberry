@@ -285,3 +285,19 @@ const obj14 = {
 };
 const u2: User = obj14;
 //obj14はUserの部分型であるということになるのでエラーは生じない
+
+//3.4.1
+type Family<Parent, Child> = {
+  mother: Parent;
+  child: Child;
+};
+//型引数＝type文で型を作成するときに宣言する、その型引数はその宣言(type文の＝の右側)だけで有効な型名として扱われる
+//型引数をもつものはジェネリック型というれ今回の例ではFamilyのこと
+
+//3.4.2
+const obj15: Family<number, string> = {
+  mother: 0,
+  child: "100",
+};
+//Familyのもつ<Parent,Child>にそれぞれnumber,string型をあてはめたということ
+//厳密にはFamilyではなくFamily<number,string>で型を表すためobj15:Familyではコンパイルエラーが生じる
