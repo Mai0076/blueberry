@@ -301,3 +301,41 @@ const obj15: Family<number, string> = {
 };
 //Familyのもつ<Parent,Child>にそれぞれnumber,string型をあてはめたということ
 //厳密にはFamilyではなくFamily<number,string>で型を表すためobj15:Familyではコンパイルエラーが生じる
+
+//3.4.3
+type HasName = {
+  name: string;
+};
+type Family1<Parent extends HasName, Child extends HasName> = {
+  mother: Parent;
+  child: Child;
+};
+//s extends t = sはtの部分型である
+//extends型により「この型引数は常に型の部分型でなければならない」という制約を意味する
+//type T=Family1<string,number>;はコンパイルエラー,string,numberはHasNameの部分型でないから
+type Animal1 = {
+  name: string;
+};
+type Human1 = {
+  name: string;
+  age: number;
+};
+type T2 = Family1<Animal1, Human1>;
+//Animal1,Human1はHasNameの部分型であるので実行できる
+type Family2<Parent extends HasName, Child extends Parent> = {
+  mother: Parent;
+  child: Child;
+};
+type TT = Family2<Animal1, Human1>;
+//type TS = Family2<Human1,Animal1>;だとAnimal1はParent1の部分型でないのでエラー
+
+//3.4.4
+type Family3<Parent = Animal, Child = Animal> = {
+  mother: Parent;
+  child: Child;
+};
+type SS = Family3<string, string>; //通常の使い方
+type ST = Family3; //Family3<Animal,Animal>  と同じ
+type SU = Family3<string>; //Family3<string,Animal>　と同じ
+
+//オプショナルな型引数(省略可能な型引数)といい＝の後の型が、使用時に<>内を省略されたときのデフォルト値となる
