@@ -186,5 +186,4 @@ const obj15 = {
     mother: 0,
     child: "100",
 };
-//Familyのもつ<Parent,Child>にそれぞれnumber,string型をあてはめたということ
-//厳密にはFamilyではなくFamily<number,string>で型を表すためobj15:Familyではコンパイルエラーが生じる
+//オプショナルな型引数(省略可能な型引数)といい＝の後の型が、使用時に<>内を省略されたときのデフォルト値となる
