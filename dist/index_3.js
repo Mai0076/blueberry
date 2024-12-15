@@ -213,3 +213,12 @@ const arr4 = [{ name: "Mary" }, { name: "Mike" }];
 const arr5 = [1, 11, 111];
 //arr[3]=123;はコンパイルエラー
 //3.5.5
+const arr6 = [1, 10, 100];
+arr6.push(1000);
+//arr6.push("hello");はコンパイルエラー
+console.log(arr6.includes(100)); //true
+console.log(arr6.includes(-1)); //false
+//includes()で配列内に()があるか真偽値を返してくれる
+console.log(arr6.indexOf(10));
+console.log(arr6.indexOf(-10));
+//indexOfで何番目かを探す

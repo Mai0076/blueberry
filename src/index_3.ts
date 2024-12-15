@@ -370,3 +370,15 @@ const arr5: readonly number[] = [1, 11, 111];
 //arr[3]=123;はコンパイルエラー
 
 //3.5.5
+//オブジェクト.メソッド名(引数)
+const arr6 = [1, 10, 100];
+arr6.push(1000);
+//arr6.push("hello");はコンパイルエラー
+console.log(arr6.includes(100)); //true
+console.log(arr6.includes(-1)); //false
+//includes()で配列内に()があるか真偽値を返してくれる
+console.log(arr6.indexOf(10)); //1
+console.log(arr6.indexOf(-10)); //-1
+//indexOfで何番目かを探す,配列にない時は-1を返す
+console.log(arr6.length); //4
+//lengthで要素数がわかる
