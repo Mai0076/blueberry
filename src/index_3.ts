@@ -343,9 +343,9 @@ type SU = Family3<string>; //Family3<string,Animal>　と同じ
 //3.5.1
 //配列はオブジェクトである,配列リテラル
 //typescriptはプリミティブとオブジェクトしかなく、プリミティブとは数値や真偽といった単一の値のこと、プリミティブの複雑な集まりがオブジェクト
-const arr = [0, 123, -456 * 100, "文字列"];
+const arr = [0, 123, -456 * 100, "文字列", true];
 console.log(arr); //[0,123,-45600,"文字列"]
-//複数型も同時に入れることができる
+//複数型も同時に入れることができる(ユニオン型)
 const arr1 = [1, 2, 3];
 const arr2 = [1, 2, 3, ...arr1]; //[1,2,3,1,2,3]
 console.log(arr2);
@@ -359,3 +359,14 @@ console.log(arr); //[0,5400,-45600]
 //constなのでarrの再代入は不可だが、要素の再代入は可能
 
 //3.5.3
+const arr3: number[] = [1, 10, -100];
+const arr4: Array<{ name: string }> = [{ name: "Mary" }, { name: "Mike" }];
+//型定義の仕方はarr:T[],arr:Array<T>
+//このArrayはジェネリック型で最初からtsに用意されているジェネリック型である
+
+//3.5.4
+//readonlyでは読み取り専用
+const arr5: readonly number[] = [1, 11, 111];
+//arr[3]=123;はコンパイルエラー
+
+//3.5.5
