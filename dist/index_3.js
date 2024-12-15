@@ -187,3 +187,38 @@ const obj15 = {
     child: "100",
 };
 //オプショナルな型引数(省略可能な型引数)といい＝の後の型が、使用時に<>内を省略されたときのデフォルト値となる
+//3.5.1
+//配列はオブジェクトである,配列リテラル
+//typescriptはプリミティブとオブジェクトしかなく、プリミティブとは数値や真偽といった単一の値のこと、プリミティブの複雑な集まりがオブジェクト
+const arr = [0, 123, -456 * 100, "文字列", true];
+console.log(arr); //[0,123,-45600,"文字列"]
+//複数型も同時に入れることができる(ユニオン型)
+const arr1 = [1, 2, 3];
+const arr2 = [1, 2, 3, ...arr1]; //[1,2,3,1,2,3]
+console.log(arr2);
+//3.5.2
+//インデックスアクセス
+console.log(arr[0]); //0を表示
+//オブジェクトのとき[]にはプロパティ名でしたが、配列では数字、０というプロパティ名という感じ
+arr[1] = 5400;
+console.log(arr); //[0,5400,-45600]
+//constなのでarrの再代入は不可だが、要素の再代入は可能
+//3.5.3
+const arr3 = [1, 10, -100];
+const arr4 = [{ name: "Mary" }, { name: "Mike" }];
+//型定義の仕方はarr:T[],arr:Array<T>
+//このArrayはジェネリック型で最初からtsに用意されているジェネリック型である
+//3.5.4
+//readonlyでは読み取り専用
+const arr5 = [1, 11, 111];
+//arr[3]=123;はコンパイルエラー
+//3.5.5
+const arr6 = [1, 10, 100];
+arr6.push(1000);
+//arr6.push("hello");はコンパイルエラー
+console.log(arr6.includes(100)); //true
+console.log(arr6.includes(-1)); //false
+//includes()で配列内に()があるか真偽値を返してくれる
+console.log(arr6.indexOf(10));
+console.log(arr6.indexOf(-10));
+//indexOfで何番目かを探す
