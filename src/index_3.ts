@@ -382,3 +382,30 @@ console.log(arr6.indexOf(-10)); //-1
 //indexOfで何番目かを探す,配列にない時は-1を返す
 console.log(arr6.length); //4
 //lengthで要素数がわかる
+
+//3.5.6
+const arr7 = [1, 10, 100];
+for (const elm of arr7) {
+  console.log(elm); //1,10,100
+}
+for (let elm of arr7) {
+  elm *= 10;
+  console.log(elm); //10,100,1000
+}
+//for-of文によるループ　for (const 変数 of 式) 文　の構文
+//ループごとに入れ替わるのでconstでも大丈夫だが、ループの中で変数に再代入したいときはlet
+
+//3.5.7
+let tuple: [string, number] = ["foo", 0];
+tuple = ["bar", -555];
+const str = tuple[0]; //strはstring型
+const num = tuple[1]; //numはnumber型
+//const nothing=tuple[2]は存在しないのでコンパイルエラー
+
+type User1 = [name: string, age: number];
+type User2 = [string, number, string?]; //sting?にすることで三番目はあってもなくてもよいユニオン型
+const mike: User1 = ["Mike", 26];
+const jim: User2 = ["Jim", 24];
+const mary: User2 = ["Mary", 22, "hello"];
+console.log(mike[1]); //26
+//タプル型とは要素数が固定された配列のことであり、存在しない番号にアクセスしないように予防できる

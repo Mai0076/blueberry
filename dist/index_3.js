@@ -213,12 +213,36 @@ const arr4 = [{ name: "Mary" }, { name: "Mike" }];
 const arr5 = [1, 11, 111];
 //arr[3]=123;はコンパイルエラー
 //3.5.5
+//オブジェクト.メソッド名(引数)
 const arr6 = [1, 10, 100];
 arr6.push(1000);
 //arr6.push("hello");はコンパイルエラー
 console.log(arr6.includes(100)); //true
 console.log(arr6.includes(-1)); //false
 //includes()で配列内に()があるか真偽値を返してくれる
-console.log(arr6.indexOf(10));
-console.log(arr6.indexOf(-10));
-//indexOfで何番目かを探す
+console.log(arr6.indexOf(10)); //1
+console.log(arr6.indexOf(-10)); //-1
+//indexOfで何番目かを探す,配列にない時は-1を返す
+console.log(arr6.length); //4
+//lengthで要素数がわかる
+//3.5.6
+const arr7 = [1, 10, 100];
+for (const elm of arr7) {
+    console.log(elm); //1,10,100
+}
+for (let elm of arr7) {
+    elm *= 10;
+    console.log(elm); //10,100,1000
+}
+//for-of文によるループ　for (const 変数 of 式) 文　の構文
+//ループごとに入れ替わるのでconstでも大丈夫だが、ループの中で変数に再代入したいときはlet
+//3.5.7
+let tuple = ["foo", 0];
+tuple = ["bar", -555];
+const str = tuple[0]; //strはstring型
+const num = tuple[1]; //numはnumber型
+const mike = ["Mike", 26];
+const jim = ["Jim", 24];
+const mary = ["Mary", 22, "hello"];
+console.log(mike[1]); //26
+//タプル型とは要素数が固定された配列のことであり、存在しない番号にアクセスしないように予防できる
