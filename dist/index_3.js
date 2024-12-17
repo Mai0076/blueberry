@@ -321,9 +321,26 @@ console.log(rest); //[3,5,8,13]
 const d = new Date();
 console.log(d); //2024-12-17T04:32:18.391Z　現在の日付と時刻が表示
 const d2 = new Date("2024-12-17T04:32:18.391Z");
-console.log(d2);
 const timeNum = d2.getTime();
-console.log(timeNum);
+console.log(timeNum); //1734409938391
 const d3 = new Date(timeNum);
-console.log(d3);
-console.log(Date.now());
+console.log(d3); //Mon Feb 03 2020  ～　のように日本標準時になる
+console.log(Date.now()); //1734409938391 現在時刻を示す数値
+//d.getFullYear(),d.getMonth()で取得できる
+//3.7.2
+//正規表現オブジェクト=文字列に対して複雑な条件で検索を行える機能(boolean型のメソッド)
+// /abcde/ という正規表現は「abcdeという文字列である」という条件になる
+// ab+c についてはbが繰り返しの対象であり、abbbc,abc,などがtrueとなる
+const r = /ab+c/;
+console.log(r.test("abbbbc")); //true
+console.log(r.test("hello abc world")); //true
+console.log(r.test("ABC")); //false
+//正規表現の構文　1.+のように前の文字につくタイプ  2.文字クラス(複数種類の文字をひとまとめに表す)
+const r1 = /[abc]/;
+const r2 = /[abc]+/;
+const r3 = /[^a-c]/;
+console.log(r1.test("abcd")); //true
+console.log(r2.test("bbccc")); //true
+console.log(r3.test("abc")); //false
+//[abc]だとaまたはbまたはc
+//[a-c]=aからc,^[a-c]＝aからc以外のすべての文字

@@ -509,3 +509,19 @@ console.log(Date.now()); //1734409938391 現在時刻を示す数値
 //d.getFullYear(),d.getMonth()で取得できる
 
 //3.7.2
+//正規表現オブジェクト=文字列に対して複雑な条件で検索を行える機能(boolean型のメソッド)
+// /abcde/ という正規表現は「abcdeという文字列である」という条件になる
+// ab+c についてはbが繰り返しの対象であり、abbbc,abc,などがtrueとなる
+const r = /ab+c/;
+console.log(r.test("abbbbc")); //true
+console.log(r.test("hello abc world")); //true
+console.log(r.test("ABC")); //false
+//正規表現の構文　1.+のように前の文字につくタイプ  2.文字クラス(複数種類の文字をひとまとめに表す)
+const r1 = /[abc]/;
+const r2 = /[abc]+/;
+const r3 = /[^a-c]/;
+console.log(r1.test("abcd")); //true
+console.log(r2.test("bbccc")); //true
+console.log(r3.test("abc")); //false
+//[abc]だとaまたはbまたはc
+//[a-c]=aからc,^[a-c]＝aからc以外のすべての文字
