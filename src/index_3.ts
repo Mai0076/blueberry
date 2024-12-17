@@ -525,3 +525,27 @@ console.log(r2.test("bbccc")); //true
 console.log(r3.test("abc")); //false
 //[abc]だとaまたはbまたはc
 //[a-c]=aからc,^[a-c]＝aからc以外のすべての文字
+
+//3.7.3
+//文字列.replace(正規表現,置換文字列)
+console.log("Hello, abbbbcc world! abbbc".replace(/ab+c/, "foobar")); //Hello, foobar world! abbbc
+console.log("Hello, abbbbcc world! abbbc".replace(/ab+c/g, "foobar")); //Hello, foobar world! foobar
+//gフラグ=文字列中の一か所だけでなく全ての箇所にマッチする
+const result = "Hello, abbbbcc world! abc".match(/a(b+)c/);
+if (result !== null) {
+  console.log(result[0]); //abbbbcc
+  console.log(result[1]); //bbbb
+}
+//result=[abbbbcc,bbbb]  //(b+)がキャプチャリンググループよりabbbbccのうちbの部分だけを取り出す
+//文字列.match(正規表現)=//を含む文字列があればその部分文字列とキャプチャリンググループ(b+)にマッチした文字列を返す
+//マッチしなければnullを返すのでif文で場合分けが必要
+const result1 = "Hello, abbbbcc world! abc".match(/a(?<worldName>b+)c/);
+if (result1 !== null) {
+  console.log(result1.groups); //{"worldName":"bbbb"}
+}
+//名前付きキャプチャリンググループ＝(?<グループ名>...)という構文でキャプチャリンググループに名前がつけれる
+const result2 = "Hello, abbbbcc world! abc".match(/a(b+)c/g);
+if (result2 !== null) {
+  console.log(result2); //["abbbbcc","abc"]
+}
+//gフラグでは[1]に二つ目の文字列が代入される
