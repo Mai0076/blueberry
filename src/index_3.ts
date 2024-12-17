@@ -87,11 +87,11 @@ console.log(obj_x2); //obj_x2は{foo:789,bar:456}
 //obj_x1とobj_x2を順に代入すると後に書かれたobj_x2の内容で上書きされる
 
 //3.1.6
-const foo = { num: 123 };
-const bar = foo;
+const foo5 = { num: 123 };
+const bar = foo5;
 console.log(bar.num); //123
 bar.num = 456;
-console.log(foo.num); //456
+console.log(foo5.num); //456
 //同じプロパティなのでfoo.num/bar.numはリンクして変動する
 
 const foo1 = { num: 123 };
@@ -409,3 +409,89 @@ const jim: User2 = ["Jim", 24];
 const mary: User2 = ["Mary", 22, "hello"];
 console.log(mike[1]); //26
 //タプル型とは要素数が固定された配列のことであり、存在しない番号にアクセスしないように予防できる
+
+//3.6.1
+//const {foo,bar} = obj;　といった分割代入
+//objのfooプロパティを変数fooに、objのbarプロパティを変数barに代入する
+//const foo=obj.foo; const bar=obj16.bar;の略である
+const obj16 = {
+  foo: 123,
+  bar: 456,
+  "foo bar": "789",
+};
+const { foo, bar: barVar, "foo bar": fooBar } = obj16; //プロパティ名:変数名
+//変数fooにはobj16.foo,変数barVarにはobj.bar,変数fooBarにはobj["foo bar"]
+//分割代入で宣言された変数には型注釈はつけられないので注意
+
+//3.6.2
+//ネストしたパターン＝プロパティ：パターンになるだけ
+const nested = {
+  num: 123,
+  obj: {
+    foo6: "hello",
+    bar: "world",
+  },
+};
+const {
+  num: num6,
+  obj: { foo6 },
+} = nested;
+console.log(num6); //123
+console.log(foo6); //hello
+
+//3.6.3
+const arr8 = [1, 2, 4, 8, 16, 32];
+const [first, second] = arr8;
+console.log(first); //1
+//他にもconst {arr:[foo]}=obj;でobj.arr[0]に変数fooを代入　[]に一つだけ書くと[0]にあたる
+//const [{name}]=arr;で変数nameにarr[0].nameが代入
+const [, foo8, , bar8, , baz8] = arr8;
+console.log(foo8); //2
+console.log(baz8); //32
+const tuple2: [string, number] = ["Mike", 26];
+const [myName, age] = tuple2;
+console.log(myName); //Mike
+
+//3.6.4
+type obj17 = { foo17?: number };
+const obj17_x: obj17 = {};
+const obj17_y: obj17 = { foo17: -1234 };
+console.log(obj17_x.foo17); //undefined
+const { foo17 = 500 } = obj17_x;
+console.log(foo17); //500
+console.log(obj17_y.foo17); //-1234
+const { foo17: bar17 = 500 } = obj17_y;
+console.log(bar17); //-1234
+//=500はobj17={}にプロパティが含まれていないときに実行されbar17=500になる
+//const {foo=500} = obj; はあくまでfooがundefinedのときにのみ代入される
+const obj18 = { foo18: null };
+const { foo18 = 500 } = obj18;
+console.log(foo18); //null
+//デフォルト値はundefinedにだけ適応される
+type NestedObj = {
+  obj?: {
+    foo: number;
+  };
+};
+const nested1: NestedObj = {
+  obj: { foo: 123 },
+};
+const nested2: NestedObj = {};
+const { obj: { foo: nestFoo1 } = { foo: 500 } } = nested1; //nestFoo1が123代入
+const { obj: { foo: nestFoo2 } = { foo: 500 } } = nested2; //nestFoo2が500代入
+//{obj : パターン = 式 }の構文
+
+//3.6.5
+//restパターン＝...変数名の構文で分割代入されたオブジェクトの残りのプロパティをすべて持つ新たなオブジェクトが代入される
+const obj19 = {
+  foo: 123,
+  bar: "string",
+  baz: false,
+};
+const { foo: foo19, ...restObj } = obj19;
+console.log(foo19); //123
+console.log(restObj); //{bar:"string",baz:false}
+const arr9 = [1, 1, 2, 3, 5, 8, 13];
+const [first2, second2, third2, ...rest] = arr9;
+console.log(second2); //1
+console.log(rest); //[3,5,8,13]
