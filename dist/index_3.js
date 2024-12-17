@@ -303,7 +303,7 @@ const { obj: { foo: nestFoo1 } = { foo: 500 } } = nested1; //nestFoo1が123代�
 const { obj: { foo: nestFoo2 } = { foo: 500 } } = nested2; //nestFoo2が500代入
 //{obj : パターン = 式 }の構文
 //3.6.5
-//restパターン
+//restパターン＝...変数名の構文で分割代入されたオブジェクトの残りのプロパティをすべて持つ新たなオブジェクトが代入される
 const obj19 = {
     foo: 123,
     bar: "string",
@@ -316,3 +316,14 @@ const arr9 = [1, 1, 2, 3, 5, 8, 13];
 const [first2, second2, third2, ...rest] = arr9;
 console.log(second2); //1
 console.log(rest); //[3,5,8,13]
+//3.7.1
+//Dateオブジェクト
+const d = new Date();
+console.log(d); //2024-12-17T04:32:18.391Z　現在の日付と時刻が表示
+const d2 = new Date("2024-12-17T04:32:18.391Z");
+console.log(d2);
+const timeNum = d2.getTime();
+console.log(timeNum);
+const d3 = new Date(timeNum);
+console.log(d3);
+console.log(Date.now());

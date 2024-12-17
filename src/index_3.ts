@@ -495,3 +495,17 @@ const arr9 = [1, 1, 2, 3, 5, 8, 13];
 const [first2, second2, third2, ...rest] = arr9;
 console.log(second2); //1
 console.log(rest); //[3,5,8,13]
+
+//3.7.1
+//Dateオブジェクト
+const d = new Date();
+console.log(d); //2024-12-17T04:32:18.391Z　現在の日付と時刻が表示
+const d2 = new Date("2024-12-17T04:32:18.391Z");
+const timeNum = d2.getTime();
+console.log(timeNum); //1734409938391
+const d3 = new Date(timeNum);
+console.log(d3); //Mon Feb 03 2020  ～　のように日本標準時になる
+console.log(Date.now()); //1734409938391 現在時刻を示す数値
+//d.getFullYear(),d.getMonth()で取得できる
+
+//3.7.2
