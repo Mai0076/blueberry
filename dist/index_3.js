@@ -367,3 +367,14 @@ if (result2 !== null) {
     console.log(result2); //["abbbbcc","abc"]
 }
 //gフラグでは[1]に二つ目の文字列が代入される
+//3.7.4
+const map = new Map();
+map.set("foo", 1234); //setメソッド＝新しいキーと値のペアを作る
+console.log(map.get("foo")); //1234　　//getメソッド＝Mapから指定したキーのデータを取る
+console.log(map.get("bar")); //undefined
+console.log(map.has("foo")); //true  //hasメソッド＝そのキーに結び付いた値があればtrue(boolean型)
+//Map<K,V>＝キーKに値Vを保存する
+const set = new Set();
+set.add(123);
+console.log(set.has(456)); //false
+//setメソッドはMapの簡易版
