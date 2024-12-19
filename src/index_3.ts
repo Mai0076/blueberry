@@ -561,3 +561,16 @@ const set: Set<number> = new Set();
 set.add(123);
 console.log(set.has(456)); //false
 //setメソッドはMapの簡易版
+
+//3.7.5
+const words = "Hello World";
+console.log(words.length); //11
+//プロパティはオブジェクトしか持たない
+//しかし上記のようにプリミティブ(文字列,数値,BibInt)でもプロパティ(.length)が存在するように見える
+type HasLength = { length: number };
+const obj_length: HasLength = "foobar";
+//string型もlengthプロパティを持っているので上記のように設定したHasLength型にも文字列を代入できる
+let val: {} = 123;
+val = "foobar";
+val = { num: 1234 };
+//valにnullとundefinedを代入するのはコンパイルエラー,{}はnull,undefinedをとれない

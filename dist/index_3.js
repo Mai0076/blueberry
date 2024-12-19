@@ -378,3 +378,6 @@ const set = new Set();
 set.add(123);
 console.log(set.has(456)); //false
 //setメソッドはMapの簡易版
+//3.7.5
+const words = "Hello World";
+console.log(words.length); //11
