@@ -381,3 +381,33 @@ console.log(set.has(456)); //false
 //3.7.5
 const words = "Hello World";
 console.log(words.length); //11
+const obj_length = "foobar";
+//string型もlengthプロパティを持っているので上記のように設定したHasLength型にも文字列を代入できる
+let val = 123;
+val = "foobar";
+val = { num: 1234 };
+const data3 = `
+uhyo,26,1
+John Smith,17,0
+Mary Sue,14,1
+`;
+const users = [];
+const lines = data3.split("\n");
+for (const line of lines) {
+    if (line === "") {
+        continue;
+    }
+    const [name, ageString, premiumUserString] = line.split(",");
+    const age = Number(ageString);
+    const premiumUser = premiumUserString === "1";
+    users.push({ name, age, premiumUser });
+}
+console.log(users);
+for (const user of users) {
+    if (user.premiumUser) {
+        console.log(`${user.name} (${user.age})はプレミアムユーザーです。`);
+    }
+    else {
+        console.log(`${user.name} (${user.age})はプレミアムユーザーではありません。`);
+    }
+}
